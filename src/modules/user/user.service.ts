@@ -8,26 +8,34 @@ import { UserORM } from '../../entities/user.entity';
 export class UserService {
     constructor(
         @InjectRepository(UserORM)
-        private readonly userORMRepository: Repository<UserORM>,
+        private readonly userRepository: Repository<UserORM>,
     ) {}
 
     async findAll(): Promise<UserORM[]> {
-        return await this.userORMRepository.find();
+        return await this.userRepository.find();
     }
 
     async findOne(id: number): Promise<UserORM> {
-        return await this.userORMRepository.findOne({where: {id}});
+        return await this.userRepository.findOne({where: {id}});
+    }
+
+    async findUserWithRelations(id: number): Promise<UserORM> {
+        return await this.userRepository.findOne({
+            where: {id},
+            relations: ['attributes', 'items'],
+        })
     }
 
     async create(user: UserORM): Promise<UserORM> {
-        return await this.userORMRepository.save(user);
+        const newUser = this.userRepository.create(user);
+        return await this.userRepository.save(newUser);
     }
 
     async update(id: number, updatedUser: Partial<UserORM>): Promise<void> {
-        await this.userORMRepository.update(id, updatedUser);
+        await this.userRepository.update(id, updatedUser);
     }
 
     async delete(id: number): Promise<void> {
-        await this.userORMRepository.delete(id);
+        await this.userRepository.delete(id);
     }
 }
