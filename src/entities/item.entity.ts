@@ -9,11 +9,14 @@ export class ItemORM {
     @Column()
     itemName: string;
 
-    @Column()
+    @Column({nullable: true})
     itemDamage: string;
 
     @Column('float')
     itemWeight: number;
+
+    @Column()
+    ammount: number;
 
     @ManyToOne(() => UserORM, user => user.items)
     user: UserORM;

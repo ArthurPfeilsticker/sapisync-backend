@@ -7,6 +7,21 @@ export class AtributesORM {
     id: number;
 
     @Column()
+    dex: number;
+
+    @Column()
+    str: number;
+
+    @Column()
+    int: number;
+
+    @Column()
+    pre: number;
+
+    @Column()
+    vig: number;
+
+    @Column()
     acrobatics: number;
 
     @Column()
@@ -76,7 +91,7 @@ export class AtributesORM {
     religion: number;
 
     @Column()
-    wisdom: number;
+    sapience: number;
 
     @Column()
     survival: number;
