@@ -23,10 +23,16 @@ export class UserORM {
     charClass: string;
 
     @Column()
-    charHp: number;
+    currentCharHp: number;
 
     @Column()
-    charSanity: number;
+    maxCharHp: number;
+
+    @Column()
+    currentCharSanity: number;
+
+    @Column()
+    maxCharSanity: number;
 
     @Column()
     charHistory: string;
